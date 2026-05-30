@@ -2,7 +2,19 @@
 
 A multi-agent system that detects, investigates, and resolves merchant transaction anomalies using ML scoring + LLM reasoning — built with LangGraph.
 
-![Risk Copilot — agentic merchant-risk investigation](assets/screenshot.png)
+## Screenshots
+
+**Dashboard** — portfolio-wide risk overview: active alerts, anomalies by MCC, and top flagged merchants.
+
+![Dashboard](assets/dashboard.png)
+
+**Investigation — the Café Aurora case** · a 10× volume spike is routed to the agent pipeline, which scores risk, researches external context, retrieves policy via ChromaDB RAG, and returns an audit-ready **APPROVE** with reason codes, feature attribution, and a counterfactual.
+
+![Investigation view](assets/investigation.png)
+
+**Merchant Detail** — 90-day transaction history (note the spike), peer z-score, and KYB verification.
+
+![Merchant detail](assets/merchant-detail.png)
 
 ## Architecture
 
