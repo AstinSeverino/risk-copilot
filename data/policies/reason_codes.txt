@@ -1,0 +1,78 @@
+REASON CODE TAXONOMY — FCRA-Compliant Decision Codes
+
+All decisions must include at least one reason code from this closed taxonomy.
+Codes must be machine-readable and map to adverse action letter templates.
+
+1. VOLUME_ANOMALY
+   - Definition: Transaction volume significantly above merchant's historical baseline
+   - Trigger: 24h count > 3x 30-day daily average
+   - Adverse action language: "Unusual increase in transaction volume compared to your typical business pattern"
+
+2. PEER_GROUP_OUTLIER
+   - Definition: Volume or amount metrics fall outside norms for same-MCC peer group
+   - Trigger: Peer z-score > 3.0σ for volume or amount
+   - Adverse action language: "Transaction patterns significantly differ from similar businesses in your category"
+
+3. TICKET_SIZE_ANOMALY
+   - Definition: Average or maximum ticket size significantly different from baseline
+   - Trigger: Average ticket > 2x historical average OR max ticket > 5x
+   - Adverse action language: "Average transaction amount deviates from your established pattern"
+
+4. CNP_RATIO_SPIKE
+   - Definition: Card-not-present percentage increased significantly
+   - Trigger: CNP ratio increased > 20 percentage points vs 30-day average
+   - Adverse action language: "Increase in card-not-present transactions above expected levels"
+
+5. FOREIGN_CARD_SPIKE
+   - Definition: International card percentage increased significantly
+   - Trigger: International card ratio > 15% (for domestic merchants with <5% baseline)
+   - Adverse action language: "Unusual increase in international card transactions"
+
+6. LOW_CUSTOMER_DIVERSITY
+   - Definition: Few unique customers generating many transactions
+   - Trigger: Customer/transaction ratio < 0.3 AND volume > 2x baseline
+   - Adverse action language: "Transaction pattern shows limited customer diversity"
+
+7. NEW_MERCHANT_HIGH_VOLUME
+   - Definition: Recently registered merchant with unusual transaction volume
+   - Trigger: Business age < 90 days AND volume > MCC peer median
+   - Adverse action language: "Transaction volume is unusual for a recently established business"
+
+8. MCC_MISMATCH
+   - Definition: Declared MCC code does not match observed transaction behavior
+   - Trigger: Transaction patterns (ticket size, timing, card type) inconsistent with declared MCC
+   - Adverse action language: "Transaction characteristics are inconsistent with your registered business category"
+
+9. LEGITIMATE_EVENT
+   - Definition: External event found that explains the anomaly
+   - Usage: Mitigating factor — reduces severity of other codes
+   - Examples: Local festival, holiday rush, concert near merchant location
+   - Note: This code should accompany other anomaly codes, not replace them
+
+10. SEASONAL_PATTERN
+    - Definition: Known seasonal pattern for this MCC explains the variation
+    - Usage: Mitigating factor — reduces severity
+    - Examples: Holiday shopping (retail), tax season (financial services), summer (tourism)
+
+11. WITHIN_NORMAL_RANGE
+    - Definition: All metrics fall within expected parameters for merchant and MCC
+    - Usage: Auto-approve decisions
+    - Note: Only valid when risk score < 0.5 AND peer z-score < 3.0σ
+
+12. KYB_FLAG
+    - Definition: KYB verification raised concerns about business legitimacy
+    - Sub-flags: SANCTIONS_HIT, PEP_MATCH, BUSINESS_TOO_NEW, MCC_HIGH_RISK
+    - Adverse action language: "Business verification process identified items requiring additional review"
+
+13. BUSINESS_AGE_CONCERN
+    - Definition: Business registration is too recent for the observed transaction volume
+    - Trigger: Business age < 90 days AND volume > 5x MCC peer median for new merchants
+    - Adverse action language: "Your business history is insufficient to support the observed transaction volume"
+
+USAGE RULES:
+- Every decision must include at least one reason code
+- APPROVE decisions should include LEGITIMATE_EVENT, SEASONAL_PATTERN, or WITHIN_NORMAL_RANGE
+- BLOCK decisions must include at least one risk code (codes 1-8, 12-13)
+- REVIEW decisions typically combine risk and mitigating codes
+- Maximum 5 reason codes per decision
+- Codes must be ordered by relevance (most important first)

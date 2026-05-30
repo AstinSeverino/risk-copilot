@@ -1,0 +1,49 @@
+RISK SCORING THRESHOLDS — Internal Policy Document
+
+1. AUTO-APPROVE THRESHOLD
+   - Risk probability < 0.5 AND peer volume z-score < 3.0σ
+   - Transactions auto-cleared with continued monitoring
+   - No LLM investigation triggered
+   - Review: quarterly calibration against false negative rate
+
+2. REVIEW THRESHOLD
+   - Risk probability 0.5–0.8 without clear contextual explanation
+   - Mixed signals: some legitimate factors, some suspicious indicators
+   - New merchants (< 180 days) with unusual but not extreme patterns
+   - Requires human analyst review within 24 hours
+   - SLA: resolution within 72 hours
+
+3. BLOCK THRESHOLD
+   - Risk probability > 0.8 AND no legitimate external explanation
+   - Evidence of transaction laundering patterns
+   - KYB critical flags: sanctions hit, PEP match
+   - Business < 30 days old with extreme volume (> 10x peer median)
+   - Foreign card percentage > 40% with no business justification
+   - Immediate hold on merchant processing
+   - Mandatory SAR filing review within 48 hours
+
+4. PEER COMPARISON THRESHOLDS
+   - Within 2σ of MCC peer group: normal activity
+   - 2–5σ above peers: elevated monitoring
+   - 5–10σ above peers: investigation required
+   - >10σ above peers: critical alert — immediate review
+   - Peer groups defined by MCC code within same geographic region
+
+5. VOLUME GROWTH THRESHOLDS
+   - <2x baseline: normal fluctuation
+   - 2–5x baseline: flag for review
+   - 5–10x baseline: high priority investigation
+   - >10x baseline: critical — potential burst-out fraud or laundering
+
+6. TICKET SIZE THRESHOLDS
+   - Average ticket within 1.5x MCC median: normal
+   - Average ticket 1.5–3x MCC median: monitor
+   - Average ticket >3x MCC median: investigate for structuring
+   - Maximum single transaction >$10,000: CTR filing required
+
+7. MODEL CONFIDENCE CALIBRATION
+   - XGBoost probability is calibrated via Platt scaling
+   - IsolationForest anomaly scores normalized to [0, 1]
+   - Combined risk score: weighted average (XGBoost 70%, IF 30%)
+   - Model retraining: monthly with confirmed fraud labels
+   - Shadow deployment: 30-day validation before production cutover

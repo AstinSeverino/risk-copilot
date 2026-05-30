@@ -1,0 +1,83 @@
+KNOW YOUR BUSINESS (KYB) VERIFICATION POLICY
+
+1. INITIAL ONBOARDING VERIFICATION
+   1.1 Required Documents
+       - Business registration / articles of incorporation
+       - EIN (Employer Identification Number) or equivalent tax ID
+       - Government-issued ID of all beneficial owners (>25% ownership)
+       - Proof of business address (utility bill, lease agreement)
+       - Bank account verification (micro-deposit or bank letter)
+
+   1.2 Verification Checks
+       - Business registry validation (Secretary of State records)
+       - Beneficial owner identity verification (KYC)
+       - Sanctions screening: OFAC SDN List, EU Consolidated List, UN Security Council
+       - PEP screening: Politically Exposed Persons database
+       - Adverse media screening: negative news, legal proceedings
+       - MCC code validation: declared business matches actual operations
+
+   1.3 Risk-Based Tiering at Onboarding
+       - Standard risk: retail, restaurants, grocery (MCC 5411, 5812, 5541)
+       - Elevated risk: e-commerce, digital goods, travel agencies
+       - High risk: gambling (7995), adult content, cryptocurrency, money services
+       - Prohibited: illegal activities, unlicensed financial services
+
+2. ONGOING MONITORING
+   2.1 Periodic Re-verification
+       - Standard risk: annual KYB refresh
+       - Elevated risk: semi-annual KYB refresh
+       - High risk: quarterly KYB refresh
+       - Trigger-based: re-verify on material business changes
+
+   2.2 Continuous Monitoring Triggers
+       - Ownership change or beneficial owner change
+       - Business address change
+       - MCC code change request
+       - Volume exceeding tier limits
+       - Sanctions list updates (daily check)
+       - Adverse media alerts
+
+3. BUSINESS AGE RISK ASSESSMENT
+   - < 30 days: highest risk tier, maximum processing limits apply
+   - 30-90 days: elevated risk, enhanced monitoring
+   - 90-180 days: standard monitoring with review at 180 days
+   - 180-365 days: establishing history, reduced monitoring
+   - > 365 days: established merchant, standard monitoring
+
+4. MCC-SPECIFIC REQUIREMENTS
+   4.1 Gambling (MCC 7995)
+       - Mandatory EDD (Enhanced Due Diligence)
+       - Licensing verification required
+       - Transaction monitoring: daily review
+       - Volume caps until established (90-day probation)
+       - Jurisdictional compliance check
+
+   4.2 Restaurants/Food Service (MCC 5812)
+       - Standard KYB sufficient
+       - Monitor for card-present to card-not-present shifts
+       - Seasonal volume variations expected and documented
+
+   4.3 Gas Stations (MCC 5541)
+       - Standard KYB plus fuel license verification
+       - Pay-at-pump fraud monitoring
+       - Pre-authorization amount monitoring
+
+   4.4 Miscellaneous Retail (MCC 5999)
+       - Enhanced monitoring due to broad category
+       - Verify actual merchandise matches declared business
+       - Cross-check with online presence
+
+5. FLAG CATEGORIES
+   - SANCTIONS_HIT: Match found on sanctions list — immediate BLOCK
+   - PEP_MATCH: Beneficial owner is politically exposed — enhanced review
+   - BUSINESS_TOO_NEW: Registration < 30 days — volume restrictions
+   - MCC_HIGH_RISK: Declared MCC in high-risk category — EDD required
+   - DOCUMENT_EXPIRED: KYB documents past renewal date — re-verification
+   - ADDRESS_MISMATCH: Business address doesn't match records — investigate
+
+6. DECISION IMPACT ON RISK SCORING
+   - KYB PASS: no impact on risk score
+   - KYB PASS with flags: +0.1 risk score adjustment
+   - KYB FAIL: automatic BLOCK recommendation
+   - KYB PENDING: automatic REVIEW recommendation
+   - KYB flags feed into reason codes: KYB_FLAG, BUSINESS_AGE_CONCERN

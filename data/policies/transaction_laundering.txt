@@ -1,0 +1,77 @@
+TRANSACTION LAUNDERING DETECTION POLICY
+
+1. DEFINITION
+   Transaction laundering (also called factoring or payment laundering) occurs when a
+   merchant processes payment card transactions on behalf of another business, or when
+   the true nature of the goods/services being sold is disguised.
+
+2. KEY INDICATORS
+   2.1 Low Customer Diversity
+       - Customer-to-transaction ratio below 0.3
+       - Same card numbers appearing repeatedly across short timeframes
+       - Transactions from few unique BINs (bank identification numbers)
+       - Risk level: HIGH when combined with volume anomaly
+
+   2.2 Card-Not-Present (CNP) Anomalies
+       - Sudden shift from card-present to card-not-present transactions
+       - CNP ratio increase > 20 percentage points vs baseline
+       - CNP transactions at traditionally card-present MCCs (restaurants, gas stations)
+       - Risk level: MEDIUM-HIGH, investigate merchant's online presence
+
+   2.3 Ticket Size Manipulation
+       - Transactions clustered just below floor limits
+       - Uniform transaction amounts (indicates automated processing)
+       - Average ticket dramatically different from MCC norms
+       - Split transactions to avoid monitoring thresholds
+
+   2.4 Temporal Anomalies
+       - Transactions outside normal business hours
+       - Uniform distribution across hours (human behavior shows peaks)
+       - Weekend/holiday volume equal to weekday volume
+       - Measured by hour entropy metric (low entropy = suspicious clustering)
+
+   2.5 Velocity Patterns
+       - Transaction rate exceeding physical POS terminal capacity
+       - More than 1 transaction per second on single terminal
+       - Volume growth ratio > 10x without business expansion evidence
+
+3. SCORING METHODOLOGY
+   - Each indicator contributes to a laundering risk sub-score
+   - Combined via weighted sum: customer_diversity (30%), cnp_pattern (25%),
+     ticket_anomaly (20%), temporal_pattern (15%), velocity (10%)
+   - Sub-score > 0.7: flag for investigation
+   - Sub-score > 0.9: recommend BLOCK
+
+4. INVESTIGATION PROCEDURES
+   4.1 Initial Assessment (Automated)
+       - Feature extraction: customer_txn_ratio, pct_card_present, hour_entropy
+       - Peer comparison against same-MCC merchants
+       - Web search for merchant online presence verification
+
+   4.2 Deep Investigation (Analyst-Assisted)
+       - Verify merchant website matches declared business
+       - Check for multiple merchants at same physical address
+       - Review merchant's acquiring bank history
+       - Check for undisclosed affiliations or common ownership
+
+   4.3 Decision Framework
+       - APPROVE: Anomaly explained by legitimate business changes
+       - REVIEW: Suspicious patterns but insufficient evidence for BLOCK
+       - BLOCK: Strong evidence of laundering, initiate merchant termination process
+
+5. FALSE POSITIVE MITIGATION
+   - Legitimate causes of low customer diversity:
+     * B2B merchants with few large clients
+     * Subscription-based businesses
+     * Seasonal businesses with repeat customers
+   - Legitimate causes of CNP increase:
+     * Merchant launching e-commerce channel
+     * COVID-era shift to online ordering
+     * Mobile payment adoption
+   - Always check for external context before escalating
+
+6. REGULATORY REQUIREMENTS
+   - Card brand rules: Visa VAMP, Mastercard MATCH
+   - Acquirer liability for merchant monitoring
+   - SAR filing when laundering is suspected
+   - Cooperation with law enforcement upon subpoena

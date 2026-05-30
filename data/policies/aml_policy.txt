@@ -1,0 +1,63 @@
+ANTI-MONEY LAUNDERING (AML) POLICY — Merchant Monitoring
+
+1. REGULATORY FRAMEWORK
+   - Bank Secrecy Act (BSA) — 31 USC §5311 et seq.
+   - USA PATRIOT Act — Title III
+   - FinCEN regulations — 31 CFR Chapter X
+   - EU Anti-Money Laundering Directive (AMLD6) — Directive 2018/1673
+   - FATF Recommendations (updated 2023)
+
+2. SUSPICIOUS ACTIVITY INDICATORS FOR MERCHANTS
+   2.1 Volume-Based Indicators
+       - Sudden unexplained increase in transaction volume (>5x baseline)
+       - Transaction volume inconsistent with business type/size
+       - Rapid growth without corresponding business expansion evidence
+
+   2.2 Pattern-Based Indicators
+       - Round-dollar transactions (structuring indicator)
+       - Transactions just below reporting thresholds ($10,000 CTR)
+       - Burst patterns: high volume followed by dormancy
+       - Night/weekend transactions inconsistent with business hours
+
+   2.3 Customer-Based Indicators
+       - Low customer diversity (few customers, many transactions)
+       - Same customer making many small transactions (smurfing)
+       - High percentage of declined/reversed transactions
+
+   2.4 Geographic Indicators
+       - High foreign card percentage for domestic business
+       - Transactions from FATF high-risk jurisdictions
+       - Cross-border patterns inconsistent with business model
+
+3. ENHANCED DUE DILIGENCE (EDD) TRIGGERS
+   - Any merchant with risk score > 0.8 for more than 3 consecutive days
+   - Merchants in high-risk MCCs: 7995 (Gambling), 5993 (Tobacco), 5944 (Jewelry)
+   - Merchants with unresolved KYB flags
+   - Merchants with prior SAR filings
+
+4. SAR FILING CRITERIA
+   - Mandatory filing when: confirmed or suspected money laundering activity
+   - Filing deadline: within 30 calendar days of detection
+   - Dollar threshold: $5,000 aggregate in suspicious transactions
+   - No threshold: when transaction involves known criminal activity
+   - SAR narrative must include: who, what, when, where, why, how
+
+5. RECORD RETENTION
+   - Transaction records: minimum 5 years (BSA requirement)
+   - SAR filings: minimum 5 years from filing date
+   - Investigation records: 7 years (AMLD6 requirement)
+   - Agent reasoning traces: 7 years (audit trail for AI-assisted decisions)
+   - Model versions and parameters: retained for full model lifecycle
+
+6. RISK-BASED APPROACH
+   - Low risk (score < 0.3): standard monitoring, batch review
+   - Medium risk (0.3-0.7): enhanced monitoring, weekly review
+   - High risk (0.7-0.9): daily review, EDD within 30 days
+   - Critical risk (> 0.9): immediate review, potential processing hold
+
+7. ESCALATION PROCEDURES
+   - Level 1 (Automated): Risk scoring and auto-approve for low-risk
+   - Level 2 (AI-Assisted): Agent investigation with human review
+   - Level 3 (Analyst Review): Senior analyst manual investigation
+   - Level 4 (Compliance Officer): SAR filing decision
+   - Level 5 (Law Enforcement): Direct referral for critical cases

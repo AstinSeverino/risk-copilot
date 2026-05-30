@@ -1,0 +1,56 @@
+# ── Secrets / environment ──
+.env
+.env.*
+!.env.example
+
+# ── AI tooling (internal — not for public repo) ──
+.claude/
+CLAUDE.md
+
+# ── Python ──
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+.venv/
+env/
+ENV/
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+dist/
+build/
+
+# ── ML / data artifacts (regenerable) ──
+*.joblib
+*.pkl
+*.h5
+*.pt
+*.pth
+*.db
+*.sqlite
+*.sqlite3
+mlruns/
+.mlflow/
+chroma/
+.chroma/
+chroma_db/
+
+# ── Streamlit ──
+.streamlit/secrets.toml
+
+# ── OS / IDE ──
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# ── Internal / interview-prep docs (keep local, do not publish) ──
+docs/job_description.md
+docs/axsys_research.md
+docs/plan_ejecucion.md

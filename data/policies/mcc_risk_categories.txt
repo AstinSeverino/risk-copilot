@@ -1,0 +1,74 @@
+MCC RISK CATEGORY CLASSIFICATION
+
+1. STANDARD RISK MCCs
+   5411 — Grocery Stores, Supermarkets
+       - Expected patterns: high volume, moderate tickets, card-present dominant
+       - Typical daily transactions: 200-2000
+       - Average ticket: $25-$75
+       - Seasonal peaks: holidays, weekends
+       - Monitoring focus: ticket size anomalies, refund patterns
+
+   5812 — Eating Places, Restaurants
+       - Expected patterns: moderate volume, lower tickets, high card-present
+       - Typical daily transactions: 50-300
+       - Average ticket: $15-$50
+       - Seasonal peaks: weekends, holidays, local events, festivals
+       - Monitoring focus: CNP shifts, after-hours transactions
+
+   5541 — Service Stations (Gas)
+       - Expected patterns: high volume, bimodal tickets (fuel vs convenience)
+       - Typical daily transactions: 100-500
+       - Average ticket: $20-$60
+       - Seasonal peaks: summer travel, holidays
+       - Monitoring focus: pre-authorization amounts, pay-at-pump fraud
+
+2. ELEVATED RISK MCCs
+   5999 — Miscellaneous and Specialty Retail
+       - Broad category — requires enhanced monitoring
+       - Highly variable patterns make anomaly detection harder
+       - Monitoring focus: verify actual goods match declared business
+       - Requires web presence verification during onboarding
+
+   5944 — Jewelry Stores
+       - High-value items susceptible to money laundering
+       - Monitoring focus: structuring (just-below-threshold transactions)
+       - CTR filing for cash purchases > $10,000
+
+3. HIGH RISK MCCs
+   7995 — Betting, Casino Gambling
+       - Mandatory Enhanced Due Diligence (EDD)
+       - Licensing verification required per jurisdiction
+       - Daily transaction monitoring
+       - Volume caps for new merchants (90-day probation)
+       - High chargeback risk
+       - Cross-border gambling restrictions apply
+       - Monitoring focus: player funding patterns, velocity, structuring
+
+   5993 — Cigar/Tobacco Stores
+       - Age verification requirements
+       - Excise tax compliance
+       - Cross-border shipping restrictions
+
+   5912 — Drug Stores / Pharmacies
+       - DEA licensing verification for controlled substances
+       - Prescription fraud monitoring
+
+4. PEER COMPARISON BY MCC
+   - Peer groups: all active merchants with same MCC code in same geographic region
+   - Metrics compared: daily transaction count, average ticket, total daily volume
+   - Z-score calculation: (merchant_value - peer_mean) / peer_std
+   - Peer group minimum size: 5 merchants (smaller groups use national benchmarks)
+
+5. CROSS-MCC MONITORING
+   - Merchants changing MCC codes: flag for investigation
+   - Transaction patterns inconsistent with declared MCC: MCC_MISMATCH reason code
+   - Multiple MCCs at same address: enhanced scrutiny for shell companies
+   - MCC migration patterns (e.g., 5812→5999): potential business model change or evasion
+
+6. SEASONAL ADJUSTMENT FACTORS
+   - Restaurants (5812): +30% during local festivals, +20% during holidays
+   - Grocery (5411): +40% during Thanksgiving/Christmas week
+   - Gas Stations (5541): +25% during summer travel season
+   - Retail (5999): +50% during Black Friday / holiday shopping
+   - Gambling (7995): +20% during major sporting events
+   - Adjustment applied to baseline before anomaly scoring
