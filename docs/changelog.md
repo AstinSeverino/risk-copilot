@@ -1,5 +1,9 @@
 # Changelog — Risk Copilot
 
+## 2026-05-30 — Open-sourced
+
+Published the project as a public repository: **github.com/AstinSeverino/risk-copilot**. Added per-tab screenshots (Dashboard, Investigation, Merchant Detail) and a Screenshots section in the README. Hardened `.gitignore` so secrets, trained models, the database, and local tooling stay out of version control.
+
 ## Session 2026-04-24 — Feature Sprint
 
 ### 1. Policy RAG System (ChromaDB)
